@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/products/action";
 
 const ProductAdd = () => {
   const [productInfo, setProductInfo] = useState({});
-  const id = useSelector((state) => state.productReducer.length + 1);
+
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -15,7 +15,7 @@ const ProductAdd = () => {
   const handleOnChange = (e) => {
     e.preventDefault();
     const value = e.target.value;
-    setProductInfo({ ...productInfo, [e.target.id]: value, id });
+    setProductInfo({ ...productInfo, [e.target.id]: value });
   };
 
   return (
