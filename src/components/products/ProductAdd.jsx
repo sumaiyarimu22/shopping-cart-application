@@ -3,19 +3,19 @@ import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/products/action";
 
 const ProductAdd = () => {
-  const [productInfo, setProductInfo] = useState({});
-
+  const [productData, setProductData] = useState({});
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleFormSubmit = (e) => {
     e.preventDefault();
-    dispatch(addProduct(productInfo));
+    dispatch(addProduct(productData));
   };
 
-  const handleOnChange = (e) => {
-    e.preventDefault();
-    const value = e.target.value;
-    setProductInfo({ ...productInfo, [e.target.id]: value });
+  const handleChange = (event) => {
+    setProductData({
+      ...productData,
+      [event.target.id]: event.target.value,
+    });
   };
 
   return (
@@ -28,7 +28,7 @@ const ProductAdd = () => {
           <form
             className="space-y-4 text-[#534F4F]"
             id="lws_addProductForm"
-            onSubmit={handleSubmit}
+            onSubmit={handleFormSubmit}
           >
             {/* product name  */}
             <div className="space-y-2">
@@ -38,7 +38,7 @@ const ProductAdd = () => {
                 id="lws_inputName"
                 type="text"
                 required
-                onChange={handleOnChange}
+                onBlur={() => handleChange(event)}
               />
             </div>
             {/* product category  */}
@@ -49,7 +49,7 @@ const ProductAdd = () => {
                 id="lws_inputCategory"
                 type="text"
                 required
-                onChange={handleOnChange}
+                onBlur={() => handleChange(event)}
               />
             </div>
             {/* product image url  */}
@@ -60,7 +60,7 @@ const ProductAdd = () => {
                 id="lws_inputImage"
                 type="text"
                 required
-                onChange={handleOnChange}
+                onBlur={() => handleChange(event)}
               />
             </div>
             {/* price & quantity container */}
@@ -73,7 +73,7 @@ const ProductAdd = () => {
                   type="number"
                   id="lws_inputPrice"
                   required
-                  onChange={handleOnChange}
+                  onBlur={() => handleChange(event)}
                 />
               </div>
               {/* quantity  */}
@@ -84,7 +84,7 @@ const ProductAdd = () => {
                   type="number"
                   id="lws_inputQuantity"
                   required
-                  onChange={handleOnChange}
+                  onBlur={() => handleChange(event)}
                 />
               </div>
             </div>
