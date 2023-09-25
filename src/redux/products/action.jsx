@@ -5,10 +5,10 @@ import {
   REMOVE_PRODUCT_QUANTITY,
 } from "./actionTypes";
 
-const addProduct = (value) => {
+const addProduct = (product) => {
   return {
     type: PRODUCT_ADDED,
-    payload: value,
+    payload: product,
   };
 };
 
