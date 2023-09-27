@@ -1,4 +1,4 @@
-import { PRODUCT_ADDED } from "./actionTypes";
+import { PRODUCT_ADDED, REMOVE_PRODUCT_QUANTITY } from "./actionTypes";
 const initialState = [];
 
 const nextProductId = (product) => {
@@ -20,6 +20,14 @@ const productReducer = (state = initialState, action) => {
         },
       ];
 
+    case REMOVE_PRODUCT_QUANTITY:
+      return [
+        ...state.map((item) =>
+          item.id === action.payload
+            ? { ...item, lws_inputQuantity: item.lws_inputQuantity - 1 }
+            : item
+        ),
+      ];
     default:
       return state;
   }

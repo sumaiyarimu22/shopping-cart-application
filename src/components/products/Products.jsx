@@ -3,7 +3,7 @@ import ProductAdd from "./ProductAdd";
 import ProductItem from "./ProductItem";
 
 const Products = () => {
-  const initialProduct = useSelector((state) => state);
+  const initialProduct = useSelector((state) => state.productReducer);
 
   return (
     <main className="py-16">

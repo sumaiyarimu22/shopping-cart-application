@@ -1,7 +1,16 @@
 import { AiOutlineMinus } from "react-icons/ai";
 import { AiOutlinePlus } from "react-icons/ai";
+import { AiOutlineDelete } from "react-icons/ai";
+const CartItem = ({ product }) => {
+  const {
+    lws_inputImage,
+    lws_inputName,
+    lws_inputCategory,
+    lws_inputPrice,
 
-const CartItem = () => {
+    cartQuantity,
+  } = product;
+  const totalPrice = cartQuantity * lws_inputPrice;
   return (
     <>
       {" "}
@@ -9,19 +18,13 @@ const CartItem = () => {
       <div className="cartCard">
         <div className="flex items-center col-span-6 space-x-6">
           {/* cart image  */}
-          <img
-            className="lws-cartImage"
-            src="https://i.dummyjson.com/data/products/40/thumbnail.jpg"
-            alt="product"
-          />
+          <img className="lws-cartImage" src={lws_inputImage} alt="product" />
           {/* cart item info  */}
           <div className="space-y-2">
-            <h4 className="lws-cartName">
-              Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptop
-            </h4>
-            <p className="lws-cartCategory">{`Men's clothing`}</p>
+            <h4 className="lws-cartName">{lws_inputName}</h4>
+            <p className="lws-cartCategory">{lws_inputCategory}</p>
             <p>
-              BDT <span className="lws-cartPrice">1100</span>
+              BDT <span className="lws-cartPrice">{lws_inputPrice}</span>
             </p>
           </div>
         </div>
@@ -33,7 +36,7 @@ const CartItem = () => {
                 <AiOutlinePlus />
               </i>
             </button>
-            <span className="lws-cartQuantity">2</span>
+            <span className="lws-cartQuantity">{cartQuantity}</span>
             <button className="lws-decrementQuantity">
               <i className="text-lg">
                 <AiOutlineMinus />
@@ -42,13 +45,15 @@ const CartItem = () => {
           </div>
           {/* price  */}
           <p className="text-lg font-bold">
-            BDT <span className="lws-calculatedPrice">2200</span>
+            BDT <span className="lws-calculatedPrice">{totalPrice}</span>
           </p>
         </div>
         {/* delete button  */}
         <div className="flex items-center justify-center col-span-2 mt-4 md:justify-end md:mt-0">
           <button className="lws-removeFromCart">
-            <i className="text-lg text-red-400 fa-solid fa-trash"></i>
+            <i className="text-lg text-red-400">
+              <AiOutlineDelete />
+            </i>
           </button>
         </div>
       </div>
