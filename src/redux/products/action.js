@@ -27,7 +27,7 @@ const removeProductQuantity = (productId) => {
 
 const addManyQuantity = (productId) => {
   return {
-    tyep: ADD_MANY_QUANTITY,
+    type: ADD_MANY_QUANTITY,
     payload: productId,
   };
 };

@@ -1,4 +1,4 @@
-import { ADD_CART } from "./actionTypes";
+import { ADD_CART, DECREASE_FROM_CART, DELETE_FROM_CART } from "./actionTypes";
 
 const initialState = [];
 
@@ -32,6 +32,28 @@ const cartReducer = (state = initialState, action) => {
         });
         return state;
       }
+
+    case DECREASE_FROM_CART:
+      // eslint-disable-next-line no-case-declarations
+      const currentId = state.find((item) => item.id === action.payload.id);
+      if (currentId.cartQuantity > 1) {
+        return [
+          ...state.map((item) =>
+            item.id === action.payload.id
+              ? {
+                  ...item,
+                  cartQuantity: item.cartQuantity - 1,
+                  lws_inputQuantity: item.lws_inputQuantity + 1,
+                }
+              : item
+          ),
+        ];
+      } else {
+        return [...state.filter((item) => item.id !== action.payload.id)];
+      }
+
+    case DELETE_FROM_CART:
+      return [...state.filter((item) => item.id !== action.payload.id)];
 
     default:
       return state;

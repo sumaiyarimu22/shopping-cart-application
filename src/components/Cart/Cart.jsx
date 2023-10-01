@@ -3,6 +3,11 @@ import CartItem from "./CartItem";
 
 const Cart = () => {
   const cartState = useSelector((state) => state.cartReducer);
+  const totalPrice = cartState.reduce(
+    (total, item) => item.cartQuantity * item.lws_inputPrice + total,
+    0
+  );
+
   return (
     <main className="py-16">
       <div className="container 2xl:px-8 px-2 mx-auto">
@@ -27,7 +32,7 @@ const Cart = () => {
                 <div className="flex items-center justify-between">
                   <p>Sub Total</p>
                   <p>
-                    BDT <span className="lws-subtotal">8800</span>
+                    BDT <span className="lws-subtotal">{totalPrice}</span>
                   </p>
                 </div>
                 {/* Discount  */}
@@ -48,7 +53,7 @@ const Cart = () => {
                 <div className="flex items-center justify-between pb-4">
                   <p className="font-bold">TOTAL</p>
                   <p className="font-bold">
-                    BDT <span className="lws-total">8800</span>
+                    BDT <span className="lws-total">{totalPrice}</span>
                   </p>
                 </div>
                 <button className="placeOrderbtn">place order</button>

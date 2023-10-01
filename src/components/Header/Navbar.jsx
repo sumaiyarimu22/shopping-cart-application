@@ -1,8 +1,14 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { AiFillShopping } from "react-icons/ai";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const cartState = useSelector((state) => state.cartReducer);
+  const cartLength = cartState.reduce(
+    (total, item) => item.cartQuantity + total,
+    0
+  );
   return (
     // Navbar
     <nav className="bg-[#171C2A] py-4">
@@ -19,7 +25,7 @@ const Navbar = () => {
             <i className="text-xl">
               <AiFillShopping />
             </i>
-            <span id="lws-totalCart">0</span>
+            <span id="lws-totalCart">{cartLength}</span>
           </Link>
         </div>
       </div>

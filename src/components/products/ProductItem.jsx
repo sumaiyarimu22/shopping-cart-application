@@ -35,6 +35,7 @@ const ProductItem = ({ product }) => {
             className="lws-btnAddToCart"
             // disabled={lws_inputQuantity <= 0}
             onClick={handleAddToCart}
+            disabled={lws_inputQuantity <= 0}
           >
             Add To Cart
           </button>
